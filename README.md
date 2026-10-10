@@ -49,3 +49,20 @@ streamlit run streamlit_app.py
 - Trained on English SMS only. It is not intended for email, phishing, or non-English text.
 - The dataset is small (roughly 650 spam messages after deduplication), so metrics have noticeable variance and the validation-chosen threshold is sensitive.
 - The data is from a 2011-era collection and does not reflect current spam patterns.
+## Error analysis (BiLSTM)
+
+Manual review of the 25 test errors (9 false positives, 16 false negatives). These are observations from reading examples, not statistically tested findings.
+
+**Missed spam (false negatives)**
+- Chat-line and adult-dating spam written in a personal tone, with spam probabilities between 0.01 and 0.27.
+- "Missed call" and call-back number scams.
+- Ringtone/WAP service messages that were near misses (0.73 and 0.82 against a 0.907 threshold).
+- Prize quizzes without typical spam keywords.
+- A few messages that read like personal texts; some may be label noise in the dataset (not verified).
+
+**Ham flagged as spam (false positives)**
+- Non-English (transliterated) text and forwarded chain messages.
+- Business or survey-style notifications (customer survey replies, deposits, reference checks).
+- Some ordinary personal messages scored very high with no obvious trigger; the cause is unknown.
+
+The full error list is in `artifacts/errors.csv`.
