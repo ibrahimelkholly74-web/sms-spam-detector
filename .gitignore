@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+data/
+.env
+artifacts/*
+!artifacts/model.keras
+!artifacts/metrics.json
+!artifacts/comparison.csv
+!artifacts/confusion_matrix.png
+!artifacts/training_curves.png
+!artifacts/errors.csv
