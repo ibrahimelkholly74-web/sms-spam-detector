@@ -1,4 +1,4 @@
 model,spam_precision,spam_recall,spam_f1,macro_f1,errors
-TF-IDF + LogReg,0.9516,0.9008,0.9255,0.9575,19
-TF-IDF + NaiveBayes,0.9389,0.9389,0.9389,0.965,16
-BiLSTM,0.9669,0.8931,0.9286,0.9593,18
+TF-IDF + LogReg,0.973,0.8438,0.9038,0.9456,23
+TF-IDF + NaiveBayes,0.9828,0.8906,0.9344,0.9628,16
+BiLSTM,0.9256,0.875,0.8996,0.9429,25

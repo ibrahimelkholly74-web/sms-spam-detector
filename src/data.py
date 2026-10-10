@@ -45,8 +45,10 @@ def load_dataset() -> pd.DataFrame:
         raise ValueError(f"Unexpected CSV schema, missing columns: {missing}")
 
     df = df[["v1", "v2"]].rename(columns={"v1": "label", "v2": "text"})
-    df = df.dropna().drop_duplicates(subset="text").reset_index(drop=True)
-    df["text"] = df["text"].str.replace(r"[\x80-\x9f]", "", regex=True)
+    df = df.dropna()
+    df["text"] = df["text"].str.replace(r"[^\x00-\x7F]", "", regex=True).str.strip()
+    df = df[df["text"] != ""]
+    df = df.drop_duplicates(subset="text").reset_index(drop=True)
     df["label"] = df["label"].map(LABEL_MAP)
 
     if df["label"].isna().any():

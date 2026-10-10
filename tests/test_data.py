@@ -20,8 +20,8 @@ def test_schema_and_labels(df):
     assert not df["text"].isna().any()
 
 
-def test_no_control_characters(df):
-    assert not df["text"].str.contains(r"[\x80-\x9f]", regex=True).any()
+def test_ascii_only(df):
+    assert df["text"].map(str.isascii).all()
 
 
 def test_split_sizes(df, splits):
